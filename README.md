@@ -9,7 +9,7 @@ A browser-based Office Space (1999) simulator built with Node.js and Express. Re
 ### Quick Start
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/office-space-game.git
+git clone https://github.com/krisschumacher365-ctrl/office-space-game.git
 cd office-space-game
 npm install
 npm start
