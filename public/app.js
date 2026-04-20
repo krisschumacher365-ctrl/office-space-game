@@ -1,9 +1,8 @@
 // ============================================================
-//  INITECH INTRANET — CLIENT-SIDE GAME ENGINE
+//  INITECH INTRANET — CLIENT-SIDE UI
 //  "I wouldn't say I've been MISSING it, Bob."
+//  Uses GameEngine (engine.js) — no server needed.
 // ============================================================
-
-const API = "";
 
 // ---- DOM refs ----------------------------------------------
 const $ = (sel) => document.querySelector(sel);
@@ -95,8 +94,7 @@ function bootSequence() {
 
 async function initGame() {
   try {
-    const res = await fetch(`${API}/api/init`);
-    const data = await res.json();
+    const data = await GameEngine.init();
     lastScore = data.state.score;
     updateState(data.state);
     showInitMessages(data.msgs);
@@ -104,7 +102,7 @@ async function initGame() {
     if (data.achievementDefs) updateAchievementsList(data.state.achievements, data.achievementDefs);
     showMainMenu();
   } catch (err) {
-    setSceneBody([{ type: "bad", text: "Failed to connect to Initech servers. Is the server running?" }]);
+    setSceneBody([{ type: "bad", text: "Failed to initialize the game. Try refreshing." }]);
   }
 }
 
@@ -535,12 +533,7 @@ function sceneCubicle() {
 }
 
 async function cubicleAction(choice) {
-  const res = await fetch(`${API}/api/cubicle`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ choice }),
-  });
-  const data = await res.json();
+  const data = GameEngine.cubicle(choice);
   setSceneBody(data.msgs);
   processResponse(data);
   setChoices([
@@ -567,12 +560,7 @@ function scenePrinter() {
 }
 
 async function printerAction(choice) {
-  const res = await fetch(`${API}/api/printer`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ choice }),
-  });
-  const data = await res.json();
+  const data = GameEngine.printer(choice);
 
   if (choice === 2) {
     // Animate the printer destruction
@@ -624,12 +612,7 @@ function sceneBobs() {
 }
 
 async function bobsAction(choice) {
-  const res = await fetch(`${API}/api/bobs`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ choice }),
-  });
-  const data = await res.json();
+  const data = GameEngine.bobs(choice);
   setSceneBody(data.msgs);
   processResponse(data);
   if (choice === 3) {
@@ -660,12 +643,7 @@ function sceneMilton() {
 }
 
 async function miltonAction(choice) {
-  const res = await fetch(`${API}/api/milton`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ choice }),
-  });
-  const data = await res.json();
+  const data = GameEngine.milton(choice);
   setSceneBody(data.msgs);
   processResponse(data);
   if (choice === 1) showMilton();
@@ -693,12 +671,7 @@ function sceneChotchkies() {
 }
 
 async function chotchkiesAction(choice) {
-  const res = await fetch(`${API}/api/chotchkies`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ choice }),
-  });
-  const data = await res.json();
+  const data = GameEngine.chotchkies(choice);
   setSceneBody(data.msgs);
   processResponse(data);
   setChoices([
@@ -727,12 +700,7 @@ function sceneScheme() {
 }
 
 async function schemeAction(choice) {
-  const res = await fetch(`${API}/api/scheme`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ choice }),
-  });
-  const data = await res.json();
+  const data = GameEngine.scheme(choice);
   setSceneBody(data.msgs);
   processResponse(data);
   setChoices([
@@ -748,12 +716,7 @@ async function sceneFishing() {
   setSceneBody([{ type: "system", text: "Checking weather for fishing conditions..." }]);
   setChoices([]);
 
-  const res = await fetch(`${API}/api/fishing`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({}),
-  });
-  const data = await res.json();
+  const data = await GameEngine.fishing();
   setSceneBody(data.msgs);
   processResponse(data);
   setChoices([
@@ -778,12 +741,7 @@ function sceneTom() {
 }
 
 async function tomAction(choice) {
-  const res = await fetch(`${API}/api/tom`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ choice }),
-  });
-  const data = await res.json();
+  const data = GameEngine.tom(choice);
   setSceneBody(data.msgs);
   processResponse(data);
   setChoices([
@@ -799,8 +757,7 @@ async function sceneAudit() {
   setSceneBody([{ type: "system", text: "Running infrastructure audit..." }]);
   setChoices([]);
 
-  const res = await fetch(`${API}/api/audit`);
-  const data = await res.json();
+  const data = GameEngine.audit();
 
   const reconMsgs = [];
   if (data.recon) {
@@ -827,8 +784,7 @@ async function sceneMotivation() {
   setSceneBody([{ type: "system", text: "Fetching today's motivational quote from corporate..." }]);
   setChoices([]);
 
-  const res = await fetch(`${API}/api/motivation`);
-  const data = await res.json();
+  const data = await GameEngine.motivation();
   setSceneBody(data.msgs);
   processResponse(data);
   setChoices([
@@ -855,12 +811,7 @@ function sceneBolton() {
 }
 
 async function boltonAction(choice) {
-  const res = await fetch(`${API}/api/bolton`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ choice }),
-  });
-  const data = await res.json();
+  const data = GameEngine.bolton(choice);
   setSceneBody(data.msgs);
   processResponse(data);
   setChoices([
@@ -886,12 +837,7 @@ function sceneHypno() {
 }
 
 async function hypnoAction(choice) {
-  const res = await fetch(`${API}/api/hypno`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ choice }),
-  });
-  const data = await res.json();
+  const data = GameEngine.hypno(choice);
   setSceneBody(data.msgs);
   processResponse(data);
   setChoices([
@@ -902,8 +848,7 @@ async function hypnoAction(choice) {
 // ---- SAVE --------------------------------------------------
 
 async function sceneSave() {
-  const res = await fetch(`${API}/api/save`, { method: "POST" });
-  const data = await res.json();
+  const data = GameEngine.save();
   setSceneTitle("💾 Game Saved");
   setSceneBody(data.msgs);
   processResponse(data);
@@ -915,8 +860,7 @@ async function sceneSave() {
 // ---- END GAME ----------------------------------------------
 
 async function sceneEnd() {
-  const res = await fetch(`${API}/api/end`, { method: "POST" });
-  const data = await res.json();
+  const data = GameEngine.end();
 
   DOM.endTitle.textContent = "GAME OVER — " + data.ending.title;
   DOM.endText.textContent = data.ending.text;
@@ -1028,12 +972,7 @@ function sceneLawrence() {
 }
 
 async function lawrenceAction(choice) {
-  const res = await fetch(`${API}/api/lawrence`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ choice }),
-  });
-  const data = await res.json();
+  const data = GameEngine.lawrence(choice);
   setSceneBody(data.msgs);
   processResponse(data);
   setChoices([
