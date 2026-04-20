@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Initech Intranet — CONFIDENTIAL</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- ===== BOOT SCREEN ===== -->
+  <div id="boot-screen">
+    <div class="boot-text">
+      <div>Initech Corp. BIOS v2.19</div>
+      <div>Copyright (C) 1999 Initech Corporation</div>
+      <div>&nbsp;</div>
+      <div>Detecting hardware... <span id="boot-hw">OK</span></div>
+      <div>Loading TPS Report Module... <span id="boot-tps">OK</span></div>
+      <div>Initializing Penny-Fraction Engine... <span id="boot-penny">OK</span></div>
+      <div>Checking printer status... <span id="boot-printer" class="blink">PC LOAD LETTER</span></div>
+      <div>&nbsp;</div>
+      <div id="boot-status" class="blink">Press any key to continue...</div>
+    </div>
+  </div>
+
+  <!-- ===== MAIN APP (hidden until boot done) ===== -->
+  <div id="app" class="hidden">
+
+    <!-- TITLE BAR (IE5 style) -->
+    <div class="title-bar">
+      <div class="title-bar-left">
+        <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='14' font-size='14'>🏢</text></svg>" width="16" height="16" alt="">
+        <span>Initech Intranet — Microsoft Internet Explorer</span>
+      </div>
+      <div class="title-bar-buttons">
+        <button class="tb-btn">_</button>
+        <button class="tb-btn">□</button>
+        <button class="tb-btn tb-close">×</button>
+      </div>
+    </div>
+
+    <!-- MENU BAR -->
+    <div class="menu-bar">
+      <span class="menu-item">File</span>
+      <span class="menu-item">Edit</span>
+      <span class="menu-item">View</span>
+      <span class="menu-item">Favorites</span>
+      <span class="menu-item">Tools</span>
+      <span class="menu-item">Help</span>
+    </div>
+
+    <!-- ADDRESS BAR -->
+    <div class="address-bar">
+      <span class="addr-label">Address</span>
+      <div class="addr-input">
+        <span>http://intranet.initech.com/game</span>
+      </div>
+      <button class="addr-go">Go</button>
+    </div>
+
+    <!-- MARQUEE -->
+    <div class="marquee-bar">
+      <marquee behavior="scroll" direction="left" scrollamount="3">
+        ☕ WELCOME TO INITECH INTRANET — TPS REPORT MEMO: PLEASE USE THE NEW COVER SHEETS — 
+        REMINDER: SATURDAY IS A WORK DAY — 
+        "IS THIS GOOD FOR THE COMPANY?" — 
+        PENNY FRACTIONS ARE WITHIN NORMAL PARAMETERS — 
+        HAVE YOU SEEN MILTON'S STAPLER? — 
+        SYNERGIZE YOUR BACKWARD OVERFLOW TODAY ☕
+      </marquee>
+    </div>
+
+    <!-- MAIN LAYOUT -->
+    <div class="main-layout">
+
+      <!-- LEFT SIDEBAR -->
+      <div class="sidebar">
+        <div class="sidebar-header">📁 Initech Navigation</div>
+        <div class="sidebar-section">
+          <div class="sidebar-title">🏢 Locations</div>
+          <button class="nav-btn" data-scene="cubicle">📋 Your Cubicle</button>
+          <button class="nav-btn" data-scene="printer">🖨️ Printer Room</button>
+          <button class="nav-btn" data-scene="bobs">👔 The Bobs</button>
+          <button class="nav-btn" data-scene="milton">📎 Milton's Desk</button>
+          <button class="nav-btn" data-scene="chotchkies">🍽️ Chotchkie's</button>
+          <button class="nav-btn" data-scene="tom">📞 Tom's Desk</button>
+          <button class="nav-btn" data-scene="bolton">🎤 Michael Bolton</button>
+          <button class="nav-btn" data-scene="hypno">🌀 Hypnotherapist</button>
+          <button class="nav-btn" data-scene="lawrence">🍺 Lawrence's Patio</button>
+        </div>
+        <div class="sidebar-section">
+          <div class="sidebar-title">💼 Operations</div>
+          <button class="nav-btn" data-scene="scheme">💰 Penny Scheme</button>
+          <button class="nav-btn" data-scene="fishing">🎣 Fishing Report</button>
+          <button class="nav-btn" data-scene="audit">📊 System Audit</button>
+          <button class="nav-btn" data-scene="motivation">💼 Motivation</button>
+        </div>
+        <div class="sidebar-section">
+          <div class="sidebar-title">💾 System</div>
+          <button class="nav-btn" data-scene="save">💾 Save Game</button>
+          <button class="nav-btn" data-scene="end" id="btn-quit">🚪 Quit Initech</button>
+        </div>
+
+        <!-- VISITOR COUNTER -->
+        <div class="visitor-counter">
+          <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 20'><rect fill='black' width='60' height='20' rx='2'/><text x='4' y='15' fill='lime' font-family='monospace' font-size='12'>00000</text></svg>" alt="counter" id="visitor-img">
+          <div>visitors since 1999</div>
+        </div>
+
+        <!-- UNDER CONSTRUCTION GIF ENERGY -->
+        <div class="under-construction">
+          🚧 UNDER CONSTRUCTION 🚧
+        </div>
+      </div>
+
+      <!-- MAIN CONTENT -->
+      <div class="content-area">
+
+        <!-- STATUS BAR (game HUD) -->
+        <div class="status-panel">
+          <div class="status-row">
+            <div class="stat-box score-box">
+              <div class="stat-label">SCORE</div>
+              <div class="stat-val score-val" id="score-val">0</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-label">MORALE</div>
+              <div class="stat-bar"><div class="stat-fill morale-fill" id="morale-bar"></div></div>
+              <div class="stat-val" id="morale-val">3/10</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-label">SUSPICION</div>
+              <div class="stat-bar"><div class="stat-fill suspicion-fill" id="suspicion-bar"></div></div>
+              <div class="stat-val" id="suspicion-val">0%</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-label">SKIM BALANCE</div>
+              <div class="stat-val skim-val" id="skim-val">$0.000000</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-label">FLAIR</div>
+              <div class="stat-val" id="flair-val">15 pcs</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-label">TPS REPORTS</div>
+              <div class="stat-val" id="tps-val">0 filed</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-label">COMBO</div>
+              <div class="stat-val combo-val" id="combo-val">—</div>
+            </div>
+            <div class="stat-box clock-box">
+              <div class="stat-label">🕐 TIME</div>
+              <div class="stat-val clock-val" id="clock-val">8:00 AM</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-label">TURN</div>
+              <div class="stat-val" id="turn-val">0</div>
+            </div>
+          </div>
+          <div class="inventory-row">
+            <span class="inv-label">📦 Inventory:</span>
+            <span id="inventory-list" class="inv-items">Empty</span>
+          </div>
+        </div>
+
+        <!-- TASK QUEUE (Lumbergh's assignments) -->
+        <div class="task-panel" id="task-panel">
+          <div class="task-header">📬 Lumbergh's Task Queue <span class="task-count" id="task-count">(0 pending)</span></div>
+          <div class="task-list" id="task-list">
+            <div class="task-empty">No tasks yet. Enjoy it while it lasts...</div>
+          </div>
+        </div>
+
+        <!-- SCENE AREA -->
+        <div id="scene-area">
+          <div id="scene-title" class="scene-title">Welcome to Initech</div>
+          <div id="scene-body" class="scene-body">
+            <p>Loading Initech Intranet...</p>
+          </div>
+          <div id="scene-choices" class="scene-choices"></div>
+        </div>
+
+      </div>
+
+      <!-- RIGHT SIDEBAR -->
+      <div class="sidebar-right">
+        <!-- Printer Status -->
+        <div class="printer-status-widget" id="printer-widget">
+          <div class="printer-header">🖨️ PRINTER STATUS</div>
+          <div class="printer-body" id="printer-body">
+            <div class="printer-status-text" id="printer-status-text">WARMING UP...</div>
+            <div class="printer-errors-count" id="printer-errors-count">Jams: 0</div>
+          </div>
+        </div>
+
+        <!-- Achievements -->
+        <div class="achievements-widget" id="achievements-widget">
+          <div class="achievements-header">🏆 ACHIEVEMENTS <span id="achievement-count">(0)</span></div>
+          <div class="achievements-list" id="achievements-list">
+            <div class="ach-empty">None yet. Start exploring!</div>
+          </div>
+        </div>
+
+        <!-- Milton popup -->
+        <div class="milton-popup" id="milton-popup">
+          <div class="milton-header">
+            <span>📎 Milton says:</span>
+            <button class="milton-close" onclick="document.getElementById('milton-popup').classList.add('hidden')">×</button>
+          </div>
+          <div class="milton-body" id="milton-body">
+            I believe you have my stapler.
+          </div>
+        </div>
+
+        <!-- Lumbergh memo -->
+        <div class="memo-box" id="lumbergh-memo">
+          <div class="memo-header">☕ MEMO FROM LUMBERGH</div>
+          <div class="memo-body" id="memo-body">
+            Yeahhh... if you could go ahead and play the game, that would be greeeaat.
+          </div>
+        </div>
+
+        <!-- Weather widget -->
+        <div class="weather-widget" id="weather-widget">
+          <div class="weather-header">🌤️ Fishing Forecast</div>
+          <div class="weather-body" id="weather-body">Loading...</div>
+        </div>
+
+        <!-- Day indicator -->
+        <div class="day-widget" id="day-widget">
+          <div class="day-name" id="day-name">...</div>
+          <div class="day-sub" id="day-sub"></div>
+        </div>
+
+        <!-- Webring -->
+        <div class="webring">
+          <div class="webring-title">🔗 Initech WebRing</div>
+          <div class="webring-links">
+            <span>◀ Prev</span>
+            <span>🌐 Random</span>
+            <span>Next ▶</span>
+          </div>
+        </div>
+
+        <!-- Best viewed with -->
+        <div class="best-viewed">
+          Best viewed with<br>
+          Internet Explorer 5.0<br>
+          at 800×600
+        </div>
+      </div>
+    </div>
+
+    <!-- ACTIVITY LOG POPUP (annoying, keeps coming back) -->
+    <div id="log-popup" class="log-popup hidden">
+      <div class="log-popup-titlebar">
+        <span>📜 Initech Activity Log — MANDATORY READING</span>
+        <button class="log-popup-close" id="log-popup-close" title="Close (it'll be back)">×</button>
+      </div>
+      <div id="message-log" class="message-log"></div>
+      <div class="log-popup-footer">
+        <span class="log-popup-nag" id="log-nag">⚠️ This window is required by corporate policy.</span>
+        <button class="log-popup-ok" id="log-popup-ok">OK</button>
+      </div>
+    </div>
+
+    <!-- TASKBAR -->
+    <div class="taskbar">
+      <button class="start-btn" id="start-btn">
+        <span class="start-logo">⊞</span> Start
+      </button>
+      <div class="taskbar-divider"></div>
+      <div class="taskbar-item active">🏢 Initech Intranet</div>
+      <div class="taskbar-item" id="taskbar-tps">📋 TPS Reports (0)</div>
+      <div class="taskbar-item taskbar-score" id="taskbar-score">⭐ Score: 0</div>
+      <div class="taskbar-spacer"></div>
+      <div class="taskbar-tray">
+        <span id="tray-skim" title="Penny Skim">💰 $0.00</span>
+        <span class="tray-divider">|</span>
+        <span id="tray-time"></span>
+      </div>
+    </div>
+
+    <!-- START MENU (hidden) -->
+    <div id="start-menu" class="start-menu hidden">
+      <div class="start-menu-banner">
+        <span>Initech<br>99</span>
+      </div>
+      <div class="start-menu-items">
+        <div class="start-item" onclick="navigateTo('cubicle')">📋 TPS Reports</div>
+        <div class="start-item" onclick="navigateTo('scheme')">💰 Penny Scheme</div>
+        <div class="start-item" onclick="navigateTo('printer')">🖨️ Destroy Printer</div>
+        <div class="start-divider"></div>
+        <div class="start-item" onclick="navigateTo('save')">💾 Save Game</div>
+        <div class="start-item" onclick="navigateTo('end')">🚪 Shut Down...</div>
+      </div>
+    </div>
+
+    <!-- ENDING OVERLAY -->
+    <div id="ending-overlay" class="ending-overlay hidden">
+      <div class="ending-box">
+        <div class="ending-title" id="ending-title"></div>
+        <div class="ending-text" id="ending-text"></div>
+        <div class="ending-stats" id="ending-stats"></div>
+        <button class="ending-btn" onclick="location.reload()">🔄 Play Again</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

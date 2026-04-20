@@ -1,0 +1,25 @@
+{
+  "name": "office_space",
+  "version": "1.0.0",
+  "description": "Initech: The Game — an Office Space text adventure & real-world spike",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js",
+    "cli": "node game.js",
+    "sim": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "office-space",
+    "initech",
+    "game",
+    "penny-fraction",
+    "tps-reports"
+  ],
+  "author": "Initech Corp (fictional)",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}

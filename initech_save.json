@@ -1,0 +1,264 @@
+{
+  "player": "Peter Gibbons",
+  "day": "Monday",
+  "isMonday": true,
+  "morale": 10,
+  "suspicion": 28,
+  "skimBalance": 0,
+  "tpsReportsFiled": 2,
+  "tpsCoverSheets": 1,
+  "tpsRequested": 4,
+  "staplerSecured": true,
+  "flairCount": 15,
+  "printerAlive": false,
+  "printerJams": 3,
+  "printerErrors": [
+    "JAM IN SECTION 2B... THE BUILDING SECTION",
+    "REPLACE DRUM UNIT (good luck finding one)",
+    "FATAL: INSUFFICIENT FLAIR"
+  ],
+  "buildingIntact": true,
+  "hypnotized": true,
+  "jumpToConclusions": true,
+  "visited": [
+    "milton",
+    "cubicle",
+    "printer",
+    "bobs",
+    "tom",
+    "hypno",
+    "audit",
+    "motivation"
+  ],
+  "inventory": [
+    "Red Swingline Stapler",
+    "Printer Debris",
+    "Jump to Conclusions Mat"
+  ],
+  "turnCount": 11,
+  "weatherData": {
+    "tempF": "50",
+    "tempC": "10",
+    "desc": "Clear",
+    "humidity": "53",
+    "windMph": "8",
+    "feelsLikeF": "47",
+    "area": "Edmonton"
+  },
+  "systemRecon": {
+    "hostname": "Athena",
+    "platform": "win32",
+    "arch": "x64",
+    "cpus": 12,
+    "totalMemGB": "63.7",
+    "freeMemGB": "46.0",
+    "uptime": "4.0 hours",
+    "user": "kriss",
+    "homeDir": "C:\\Users\\kriss",
+    "nodeVersion": "v24.14.0"
+  },
+  "messageLog": [],
+  "ending": null,
+  "score": 2405,
+  "scoreLog": [
+    {
+      "points": 100,
+      "reason": "📎 Secured the red Swingline stapler",
+      "turn": 0
+    },
+    {
+      "points": 150,
+      "reason": "🏆 📎 Swingline Secured",
+      "turn": 1
+    },
+    {
+      "points": 100,
+      "reason": "🏆 😒 Case of the Mondays",
+      "turn": 1
+    },
+    {
+      "points": 100,
+      "reason": "🏆 🦉 Night Owl",
+      "turn": 1
+    },
+    {
+      "points": 30,
+      "reason": "📋 TPS Report filed (with cover)",
+      "turn": 1
+    },
+    {
+      "points": 60,
+      "reason": "✅ re-file TPS-0001 (cover sheet was wrong)",
+      "turn": 1
+    },
+    {
+      "points": 50,
+      "reason": "🏆 📋 First TPS Report",
+      "turn": 2
+    },
+    {
+      "points": 25,
+      "reason": "🏆 📄 Memo Received",
+      "turn": 2
+    },
+    {
+      "points": 15,
+      "reason": "😐 Did nothing (Peter energy)",
+      "turn": 2
+    },
+    {
+      "points": 50,
+      "reason": "🏆 😐 15 Minutes of Work",
+      "turn": 2
+    },
+    {
+      "points": 25,
+      "reason": "🏆 🖨️ PC LOAD LETTER",
+      "turn": 3
+    },
+    {
+      "points": 10,
+      "reason": "🖨️ Tried to print (it failed, obviously)",
+      "turn": 3
+    },
+    {
+      "points": 75,
+      "reason": "🏆 🖨️ Jam Session",
+      "turn": 5
+    },
+    {
+      "points": 200,
+      "reason": "🏏 Destroyed the printer",
+      "turn": 5
+    },
+    {
+      "points": 500,
+      "reason": "🏆 🏏 Damn It Feels Good",
+      "turn": 6
+    },
+    {
+      "points": 50,
+      "reason": "🤸 Got the Jump to Conclusions Mat",
+      "turn": 6
+    },
+    {
+      "points": 100,
+      "reason": "🏆 🤸 Jump to Conclusions",
+      "turn": 7
+    },
+    {
+      "points": 40,
+      "reason": "🚫 TPS Report filed (rebel — no cover)",
+      "turn": 7
+    },
+    {
+      "points": 100,
+      "reason": "✅ file a RUSH TPS report — Lumbergh needs it by 5pm (COMBO x2!)",
+      "turn": 7
+    },
+    {
+      "points": 75,
+      "reason": "🏆 🚫 Cover Sheet Rebel",
+      "turn": 7
+    },
+    {
+      "points": -25,
+      "reason": "❌ Task expired: run the system audit for the consultants",
+      "turn": 8
+    },
+    {
+      "points": 200,
+      "reason": "🌀 Got hypnotized",
+      "turn": 8
+    },
+    {
+      "points": 300,
+      "reason": "🏆 🌀 Permanently Relaxed",
+      "turn": 9
+    },
+    {
+      "points": 35,
+      "reason": "📊 Ran system audit",
+      "turn": 9
+    },
+    {
+      "points": 15,
+      "reason": "💼 Read motivational quote",
+      "turn": 10
+    },
+    {
+      "points": 25,
+      "reason": "🏆 💼 Motivated!",
+      "turn": 10
+    }
+  ],
+  "achievements": [
+    "stapler",
+    "monday",
+    "night_owl",
+    "first_tps",
+    "cover_sheet",
+    "do_nothing",
+    "printer_jam",
+    "printer_3_jams",
+    "printer_destroy",
+    "jump_mat",
+    "rebel_report",
+    "hypnotized",
+    "motivation"
+  ],
+  "tasks": [
+    {
+      "id": "TASK-1776674218629-395",
+      "type": "tps",
+      "text": "re-file TPS-0001 (cover sheet was wrong)",
+      "scene": "cubicle",
+      "pts": 60,
+      "susp": -2,
+      "assigned": 0,
+      "deadline": 5,
+      "status": "completed"
+    },
+    {
+      "id": "TASK-1776674239782-516",
+      "type": "audit",
+      "text": "run the system audit for the consultants",
+      "scene": "audit",
+      "pts": 45,
+      "susp": -2,
+      "assigned": 1,
+      "deadline": 7,
+      "status": "expired"
+    },
+    {
+      "id": "TASK-1776674325087-858",
+      "type": "tps",
+      "text": "file a RUSH TPS report — Lumbergh needs it by 5pm",
+      "scene": "cubicle",
+      "pts": 80,
+      "susp": -5,
+      "assigned": 4,
+      "deadline": 8,
+      "status": "completed"
+    },
+    {
+      "id": "TASK-1776674437359-91",
+      "type": "print",
+      "text": "print the Q3 projections",
+      "scene": "printer",
+      "pts": 40,
+      "susp": -2,
+      "assigned": 7,
+      "deadline": 11,
+      "status": "pending"
+    }
+  ],
+  "tasksCompleted": 2,
+  "tasksFailed": 1,
+  "comboStreak": 0,
+  "bestCombo": 2,
+  "miltonAnger": 0,
+  "coffeeCups": 0,
+  "printerAttempts": 2,
+  "savedAt": "2026-04-20T08:41:56.784Z"
+}

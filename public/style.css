@@ -1,0 +1,949 @@
+/* ============================================================
+   INITECH INTRANET — 1999 CORPORATE AESTHETIC
+   "Is this good for the company?"
+   ============================================================ */
+
+/* --- RESET & BASE ---------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --win-bg: #c0c0c0;
+  --win-face: #c0c0c0;
+  --win-dark: #808080;
+  --win-light: #ffffff;
+  --win-darkest: #000000;
+  --win-blue: #000080;
+  --win-blue-light: #1084d0;
+  --win-active: #0a246a;
+  --font-sys: "MS Sans Serif", "Microsoft Sans Serif", Tahoma, Geneva, sans-serif;
+  --font-mono: "Courier New", Courier, monospace;
+  --font-body: "Times New Roman", Times, serif;
+  --bg-body: #008080;
+}
+
+html, body {
+  height: 100%;
+  font-family: var(--font-sys);
+  font-size: 12px;
+  background: var(--bg-body);
+  overflow: hidden;
+  cursor: default;
+}
+
+.hidden { display: none !important; }
+
+/* --- BOOT SCREEN ----------------------------------------- */
+#boot-screen {
+  position: fixed; inset: 0;
+  background: #000;
+  color: #aaa;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  padding: 40px;
+  z-index: 9999;
+  display: flex;
+  align-items: flex-start;
+}
+.boot-text div { margin-bottom: 4px; }
+.boot-text .blink { animation: blink 1s step-end infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+#boot-printer { color: #ff4444; }
+
+/* --- TITLE BAR (IE5) ------------------------------------- */
+.title-bar {
+  background: linear-gradient(to right, var(--win-active), var(--win-blue-light));
+  color: white;
+  font-weight: bold;
+  font-size: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2px 4px;
+  height: 22px;
+}
+.title-bar-left {
+  display: flex; align-items: center; gap: 4px;
+}
+.title-bar-buttons { display: flex; gap: 2px; }
+.tb-btn {
+  width: 16px; height: 14px;
+  background: var(--win-face);
+  border: 1px outset var(--win-light);
+  font-size: 10px; line-height: 10px;
+  cursor: pointer; text-align: center;
+  font-family: var(--font-sys);
+}
+.tb-btn:active { border-style: inset; }
+.tb-close { color: black; }
+
+/* --- MENU BAR -------------------------------------------- */
+.menu-bar {
+  background: var(--win-face);
+  border-bottom: 1px solid var(--win-dark);
+  padding: 1px 4px;
+  display: flex; gap: 2px;
+}
+.menu-item {
+  padding: 1px 6px;
+  cursor: pointer;
+}
+.menu-item:hover { background: var(--win-blue); color: white; }
+
+/* --- ADDRESS BAR ----------------------------------------- */
+.address-bar {
+  background: var(--win-face);
+  border-bottom: 1px solid var(--win-dark);
+  padding: 2px 4px;
+  display: flex; align-items: center; gap: 4px;
+}
+.addr-label { font-weight: bold; font-size: 11px; }
+.addr-input {
+  flex: 1;
+  background: white;
+  border: 2px inset var(--win-face);
+  padding: 1px 4px;
+  font-family: var(--font-sys);
+  font-size: 11px;
+}
+.addr-go {
+  background: var(--win-face);
+  border: 2px outset var(--win-face);
+  padding: 1px 8px;
+  font-size: 11px; cursor: pointer;
+}
+
+/* --- MARQUEE --------------------------------------------- */
+.marquee-bar {
+  background: #ffffcc;
+  border-bottom: 1px solid #cccc66;
+  font-size: 11px;
+  font-weight: bold;
+  color: var(--win-blue);
+  padding: 2px 0;
+}
+
+/* --- MAIN LAYOUT ----------------------------------------- */
+.main-layout {
+  display: flex;
+  height: calc(100vh - 22px - 20px - 22px - 20px - 28px);
+  background: #f0f0f0;
+}
+
+/* --- SIDEBAR LEFT ---------------------------------------- */
+.sidebar {
+  width: 180px;
+  min-width: 180px;
+  background: var(--win-face);
+  border-right: 2px groove var(--win-face);
+  overflow-y: auto;
+  padding: 4px;
+}
+.sidebar-header {
+  background: var(--win-blue);
+  color: white;
+  font-weight: bold;
+  padding: 4px 6px;
+  margin-bottom: 4px;
+  font-size: 11px;
+}
+.sidebar-section { margin-bottom: 6px; }
+.sidebar-title {
+  font-weight: bold;
+  font-size: 11px;
+  padding: 2px 4px;
+  border-bottom: 1px solid var(--win-dark);
+  margin-bottom: 2px;
+}
+.nav-btn {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  padding: 3px 8px;
+  font-family: var(--font-sys);
+  font-size: 11px;
+  cursor: pointer;
+  color: var(--win-blue);
+  text-decoration: underline;
+}
+.nav-btn:hover {
+  background: var(--win-blue);
+  color: white;
+}
+.nav-btn.visited-link { color: #551a8b; }
+
+.visitor-counter {
+  text-align: center;
+  margin: 10px 0 6px;
+  font-size: 10px;
+  color: #666;
+}
+.under-construction {
+  text-align: center;
+  font-size: 10px;
+  color: #ff6600;
+  font-weight: bold;
+  animation: blink 1.5s step-end infinite;
+  margin-top: 8px;
+}
+
+/* --- CONTENT AREA ---------------------------------------- */
+.content-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: white;
+  border: 2px inset var(--win-face);
+}
+
+/* --- STATUS PANEL (HUD) ---------------------------------- */
+.status-panel {
+  background: #e8e8e0;
+  border-bottom: 2px groove var(--win-face);
+  padding: 6px 10px;
+}
+.status-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.stat-box {
+  min-width: 100px;
+}
+.stat-label {
+  font-size: 10px;
+  font-weight: bold;
+  color: #444;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.stat-bar {
+  width: 100px;
+  height: 12px;
+  background: #ccc;
+  border: 1px inset var(--win-face);
+  margin: 2px 0;
+}
+.stat-fill {
+  height: 100%;
+  transition: width 0.5s ease;
+}
+.morale-fill { background: #4a4; width: 30%; }
+.suspicion-fill { background: #cc4; width: 0%; }
+.stat-val {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: bold;
+}
+.skim-val { color: #006600; }
+.inventory-row {
+  margin-top: 4px;
+  font-size: 11px;
+}
+.inv-label { font-weight: bold; }
+.inv-items { color: #555; }
+
+/* --- SCORE BOX ------------------------------------------- */
+.score-box .stat-val {
+  font-size: 16px;
+  color: #DAA520;
+}
+.combo-val { color: #ff6600; }
+
+/* score float animation */
+.score-float {
+  position: fixed;
+  font-family: var(--font-sys);
+  font-size: 14px;
+  font-weight: bold;
+  color: #FFD700;
+  text-shadow: 1px 1px 0 #000;
+  pointer-events: none;
+  z-index: 9000;
+  animation: floatUp 1.2s ease-out forwards;
+}
+.score-float.negative { color: #ff4444; }
+@keyframes floatUp {
+  0%   { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-40px); }
+}
+
+/* --- TASK PANEL ------------------------------------------ */
+.task-panel {
+  background: #fff8e0;
+  border-bottom: 2px groove var(--win-face);
+  max-height: 90px;
+  overflow-y: auto;
+}
+.task-header {
+  background: #8B4513;
+  color: white;
+  font-size: 10px;
+  font-weight: bold;
+  padding: 2px 6px;
+  position: sticky;
+  top: 0;
+}
+.task-count { opacity: 0.8; }
+.task-list {
+  padding: 2px 6px;
+  font-size: 11px;
+}
+.task-empty { color: #999; font-style: italic; padding: 2px 0; }
+.task-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2px 0;
+  border-bottom: 1px dotted #ddd;
+}
+.task-item-text { flex: 1; }
+.task-item-scene {
+  font-size: 9px;
+  background: var(--win-blue);
+  color: white;
+  padding: 0 4px;
+  margin: 0 4px;
+  cursor: pointer;
+}
+.task-item-scene:hover { background: #4444cc; }
+.task-item-deadline { font-size: 9px; color: #999; }
+.task-item-deadline.urgent { color: #cc0000; font-weight: bold; }
+
+/* --- PRINTER STATUS WIDGET ------------------------------- */
+.printer-status-widget {
+  border: 1px solid #999;
+  background: #fff0f0;
+  margin-bottom: 8px;
+}
+.printer-header {
+  background: #cc0000;
+  color: white;
+  font-size: 10px;
+  font-weight: bold;
+  padding: 2px 4px;
+}
+.printer-body {
+  padding: 6px;
+  font-size: 11px;
+  font-family: var(--font-mono);
+}
+.printer-status-text {
+  font-weight: bold;
+  color: #cc0000;
+  animation: blink 1.5s step-end infinite;
+}
+.printer-status-text.ok { color: #006600; animation: none; }
+.printer-errors-count { font-size: 10px; color: #666; margin-top: 2px; }
+
+/* --- ACHIEVEMENTS WIDGET --------------------------------- */
+.achievements-widget {
+  border: 1px solid #999;
+  background: #fffff0;
+  margin-bottom: 8px;
+  max-height: 160px;
+  overflow-y: auto;
+}
+.achievements-header {
+  background: #DAA520;
+  color: white;
+  font-size: 10px;
+  font-weight: bold;
+  padding: 2px 4px;
+  position: sticky;
+  top: 0;
+}
+.achievements-list { padding: 4px; }
+.ach-empty { color: #999; font-size: 10px; font-style: italic; }
+.ach-item {
+  font-size: 10px;
+  padding: 2px 0;
+  border-bottom: 1px dotted #eee;
+}
+.ach-name { font-weight: bold; }
+.ach-desc { color: #666; font-style: italic; }
+.ach-pts { color: #DAA520; font-weight: bold; }
+
+/* achievement popup toast */
+.achievement-toast {
+  position: fixed;
+  top: 40px;
+  right: 20px;
+  background: #fffff0;
+  border: 3px outset #DAA520;
+  padding: 8px 14px;
+  font-family: var(--font-sys);
+  font-size: 12px;
+  z-index: 8000;
+  box-shadow: 3px 3px 0 rgba(0,0,0,0.3);
+  animation: slideInRight 0.3s ease-out, fadeOut 0.5s ease-in 2.5s forwards;
+  max-width: 250px;
+}
+.achievement-toast .toast-title {
+  font-weight: bold;
+  color: #DAA520;
+  font-size: 11px;
+  margin-bottom: 2px;
+}
+.achievement-toast .toast-name { font-weight: bold; }
+.achievement-toast .toast-desc { color: #666; font-size: 10px; }
+@keyframes slideInRight {
+  from { transform: translateX(100%); opacity: 0; }
+  to   { transform: translateX(0); opacity: 1; }
+}
+@keyframes fadeOut {
+  to { opacity: 0; }
+}
+
+/* --- PRINTER ERROR POPUP --------------------------------- */
+.printer-error-popup {
+  position: fixed;
+  bottom: 40px;
+  right: 20px;
+  background: white;
+  border: 3px outset var(--win-face);
+  font-family: var(--font-sys);
+  font-size: 12px;
+  z-index: 7000;
+  box-shadow: 3px 3px 0 rgba(0,0,0,0.3);
+  width: 260px;
+  animation: slideInRight 0.3s ease-out;
+}
+.printer-error-titlebar {
+  background: linear-gradient(to right, #cc0000, #ff4444);
+  color: white;
+  font-weight: bold;
+  font-size: 11px;
+  padding: 2px 4px;
+  display: flex;
+  justify-content: space-between;
+}
+.printer-error-body {
+  padding: 12px;
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+.printer-error-icon { font-size: 24px; }
+.printer-error-text { font-family: var(--font-mono); font-size: 11px; color: #cc0000; font-weight: bold; }
+.printer-error-btn {
+  display: block;
+  margin: 0 12px 8px;
+  padding: 2px 16px;
+  background: var(--win-face);
+  border: 2px outset var(--win-face);
+  font-family: var(--font-sys);
+  cursor: pointer;
+  text-align: center;
+}
+.printer-error-btn:active { border-style: inset; }
+
+.taskbar-score { color: #DAA520; font-weight: bold; }
+
+/* --- SCENE AREA ------------------------------------------ */
+#scene-area {
+  flex: 1;
+  padding: 12px 16px;
+  overflow-y: auto;
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.5;
+  background: white;
+}
+.scene-title {
+  font-family: var(--font-sys);
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--win-blue);
+  border-bottom: 2px solid var(--win-blue);
+  margin-bottom: 10px;
+  padding-bottom: 4px;
+}
+.scene-body {
+  margin-bottom: 12px;
+}
+.scene-body p {
+  margin-bottom: 8px;
+}
+.msg-normal { color: #333; }
+.msg-system { color: #555; font-style: italic; }
+.msg-good { color: #006600; font-weight: bold; }
+.msg-bad { color: #cc0000; font-weight: bold; }
+.msg-warning { color: #996600; }
+.msg-quote { color: #333; font-style: italic; border-left: 3px solid #ccc; padding-left: 8px; margin: 4px 0; }
+.msg-lumbergh { color: #8B4513; font-style: italic; }
+.msg-bob { color: #4B0082; }
+.msg-milton { color: #B22222; }
+.msg-action { color: #cc0000; font-weight: bold; font-size: 16px; }
+.msg-motivation { color: var(--win-blue); font-weight: bold; font-style: italic; border: 1px dashed #ccc; padding: 6px; margin: 4px 0; background: #fffff0; }
+
+/* --- CHOICES --------------------------------------------- */
+.scene-choices {
+  margin-top: 8px;
+}
+.choice-btn {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: #f4f4f0;
+  border: 2px outset var(--win-face);
+  padding: 6px 10px;
+  margin-bottom: 4px;
+  font-family: var(--font-sys);
+  font-size: 12px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.choice-btn:hover {
+  background: #e0e0ff;
+  border-color: var(--win-blue);
+}
+.choice-btn:active {
+  border-style: inset;
+  background: #d0d0ff;
+}
+.choice-btn .choice-key {
+  display: inline-block;
+  background: var(--win-blue);
+  color: white;
+  width: 20px;
+  text-align: center;
+  font-weight: bold;
+  margin-right: 6px;
+  font-size: 10px;
+}
+
+/* --- ACTIVITY LOG POPUP (the annoying one) --------------- */
+.log-popup {
+  position: fixed;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 520px;
+  max-width: 90vw;
+  background: #1a1a2e;
+  border: 3px outset var(--win-face);
+  box-shadow: 4px 4px 0 rgba(0,0,0,0.4);
+  z-index: 6000;
+  animation: logPopIn 0.25s ease-out;
+  display: flex;
+  flex-direction: column;
+}
+.log-popup.hidden { display: none !important; }
+.log-popup-titlebar {
+  background: linear-gradient(to right, var(--win-active), var(--win-blue-light));
+  color: white;
+  font-weight: bold;
+  font-size: 11px;
+  padding: 2px 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: default;
+  user-select: none;
+}
+.log-popup-close {
+  background: var(--win-face);
+  border: 1px outset var(--win-light);
+  width: 16px; height: 14px;
+  font-size: 10px; line-height: 10px;
+  cursor: pointer; text-align: center;
+  font-family: var(--font-sys);
+  font-weight: bold;
+}
+.log-popup-close:active { border-style: inset; }
+.message-log {
+  height: 140px;
+  overflow-y: auto;
+  padding: 4px 8px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: #00cc00;
+}
+.message-log .log-entry {
+  margin-bottom: 2px;
+  border-bottom: 1px solid #222244;
+  padding-bottom: 2px;
+}
+.message-log .log-time { color: #666; }
+.message-log .log-evt { color: #cc9900; }
+.message-log .log-good { color: #00ff00; }
+.message-log .log-bad { color: #ff4444; }
+.message-log .log-sys { color: #6688cc; }
+.log-popup-footer {
+  background: var(--win-face);
+  padding: 4px 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #333;
+}
+.log-popup-nag {
+  font-size: 9px;
+  color: #888;
+  font-style: italic;
+}
+.log-popup-ok {
+  background: var(--win-face);
+  border: 2px outset var(--win-face);
+  padding: 1px 16px;
+  font-family: var(--font-sys);
+  font-size: 11px;
+  cursor: pointer;
+}
+.log-popup-ok:active { border-style: inset; }
+@keyframes logPopIn {
+  0%   { transform: translateX(-50%) scale(0.8); opacity: 0; }
+  100% { transform: translateX(-50%) scale(1); opacity: 1; }
+}
+
+/* --- SIDEBAR RIGHT --------------------------------------- */
+.sidebar-right {
+  width: 180px;
+  min-width: 180px;
+  background: var(--win-face);
+  border-left: 2px groove var(--win-face);
+  padding: 4px;
+  overflow-y: auto;
+}
+
+/* Milton popup — Clippy-style */
+.milton-popup {
+  background: #ffffcc;
+  border: 2px solid #333;
+  margin-bottom: 8px;
+  font-size: 11px;
+  box-shadow: 2px 2px 0 rgba(0,0,0,0.3);
+}
+.milton-header {
+  background: #cc0000;
+  color: white;
+  padding: 2px 4px;
+  display: flex; justify-content: space-between; align-items: center;
+  font-weight: bold;
+  font-size: 10px;
+}
+.milton-close {
+  background: none; border: none; color: white;
+  font-weight: bold; cursor: pointer; font-size: 12px;
+}
+.milton-body {
+  padding: 6px;
+  font-style: italic;
+}
+
+/* Lumbergh memo */
+.memo-box {
+  border: 1px solid #999;
+  background: #fffff0;
+  margin-bottom: 8px;
+}
+.memo-header {
+  background: #8B4513;
+  color: white;
+  font-size: 10px;
+  font-weight: bold;
+  padding: 2px 4px;
+}
+.memo-body {
+  padding: 6px;
+  font-size: 11px;
+  font-style: italic;
+  color: #333;
+}
+
+/* Weather widget */
+.weather-widget {
+  border: 1px solid #999;
+  background: #f0f8ff;
+  margin-bottom: 8px;
+}
+.weather-header {
+  background: #336699;
+  color: white;
+  font-size: 10px;
+  font-weight: bold;
+  padding: 2px 4px;
+}
+.weather-body {
+  padding: 6px;
+  font-size: 11px;
+}
+
+/* Day widget */
+.day-widget {
+  text-align: center;
+  padding: 8px;
+  margin-bottom: 8px;
+  border: 1px solid #999;
+  background: white;
+}
+.day-name {
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--win-blue);
+}
+.day-sub {
+  font-size: 10px;
+  color: #cc0000;
+  font-weight: bold;
+}
+
+/* Webring */
+.webring {
+  border: 1px solid #999;
+  background: #f0f0ff;
+  padding: 4px;
+  margin-bottom: 8px;
+  text-align: center;
+}
+.webring-title {
+  font-weight: bold;
+  font-size: 10px;
+  margin-bottom: 4px;
+}
+.webring-links {
+  display: flex;
+  justify-content: space-around;
+  font-size: 10px;
+  color: var(--win-blue);
+}
+.webring-links span { cursor: pointer; text-decoration: underline; }
+
+.best-viewed {
+  text-align: center;
+  font-size: 9px;
+  color: #888;
+  margin-top: 8px;
+  font-style: italic;
+}
+
+/* --- TASKBAR --------------------------------------------- */
+.taskbar {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  height: 28px;
+  background: var(--win-face);
+  border-top: 2px outset var(--win-light);
+  display: flex;
+  align-items: center;
+  padding: 2px 4px;
+  gap: 4px;
+  z-index: 100;
+}
+.start-btn {
+  background: var(--win-face);
+  border: 2px outset var(--win-face);
+  padding: 1px 6px;
+  font-family: var(--font-sys);
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.start-btn:active { border-style: inset; }
+.start-logo { font-size: 14px; }
+.taskbar-divider {
+  width: 1px; height: 20px;
+  border-left: 1px solid var(--win-dark);
+  border-right: 1px solid var(--win-light);
+}
+.taskbar-item {
+  background: var(--win-face);
+  border: 1px solid var(--win-dark);
+  padding: 2px 8px;
+  font-size: 11px;
+  cursor: pointer;
+  max-width: 160px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.taskbar-item.active {
+  border-style: inset;
+  background: #d8d8d8;
+  font-weight: bold;
+}
+.taskbar-spacer { flex: 1; }
+.taskbar-tray {
+  background: var(--win-face);
+  border: 1px inset var(--win-face);
+  padding: 2px 8px;
+  font-size: 11px;
+  display: flex;
+  gap: 6px;
+}
+.tray-divider { color: #999; }
+
+/* --- START MENU ------------------------------------------ */
+.start-menu {
+  position: fixed;
+  bottom: 28px;
+  left: 4px;
+  width: 200px;
+  background: var(--win-face);
+  border: 2px outset var(--win-face);
+  z-index: 200;
+  box-shadow: 3px 3px 0 rgba(0,0,0,0.3);
+  display: flex;
+}
+.start-menu-banner {
+  width: 28px;
+  background: linear-gradient(to top, var(--win-active), #4a78a0);
+  color: white;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  font-weight: bold;
+  font-size: 14px;
+  padding: 8px 4px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.start-menu-items {
+  flex: 1;
+  padding: 4px 0;
+}
+.start-item {
+  padding: 4px 12px;
+  cursor: pointer;
+  font-size: 12px;
+}
+.start-item:hover {
+  background: var(--win-blue);
+  color: white;
+}
+.start-divider {
+  border-top: 1px solid var(--win-dark);
+  border-bottom: 1px solid var(--win-light);
+  margin: 2px 4px;
+}
+
+/* --- ENDING OVERLAY -------------------------------------- */
+.ending-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 500;
+}
+.ending-box {
+  background: var(--win-face);
+  border: 3px outset var(--win-face);
+  max-width: 500px;
+  width: 90%;
+  padding: 0;
+}
+.ending-title {
+  background: linear-gradient(to right, var(--win-active), var(--win-blue-light));
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 6px 10px;
+}
+.ending-text {
+  padding: 16px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.6;
+  white-space: pre-line;
+}
+.ending-stats {
+  padding: 0 16px 10px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: #555;
+}
+.ending-btn {
+  display: block;
+  width: calc(100% - 32px);
+  margin: 0 16px 16px;
+  padding: 6px;
+  background: var(--win-face);
+  border: 2px outset var(--win-face);
+  font-family: var(--font-sys);
+  font-size: 13px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.ending-btn:hover { background: #e0e0ff; }
+
+/* --- CLOCK WIDGET --------------------------------------- */
+.clock-box {
+  background: #1a1a2e !important;
+  border: 2px inset #333;
+}
+.clock-val {
+  font-family: var(--font-mono);
+  font-size: 14px !important;
+  color: #00ff00 !important;
+  text-shadow: 0 0 6px #00ff0088;
+  letter-spacing: 1px;
+}
+.clock-late .clock-val {
+  color: #ff4444 !important;
+  text-shadow: 0 0 6px #ff000088;
+  animation: clockPulse 1s infinite;
+}
+@keyframes clockPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* --- GAME OVER OVERLAY VARIANTS ------------------------- */
+.ending-overlay.type-fired .ending-title {
+  background: linear-gradient(to right, #8b0000, #cc0000);
+}
+.ending-overlay.type-breakdown .ending-title {
+  background: linear-gradient(to right, #555, #888);
+}
+.ending-overlay.type-fire .ending-title {
+  background: linear-gradient(to right, #cc4400, #ff6600);
+}
+.ending-overlay.type-survived .ending-title {
+  background: linear-gradient(to right, #006600, #009900);
+}
+
+/* --- SCROLLBARS (retro) ---------------------------------- */
+::-webkit-scrollbar { width: 16px; }
+::-webkit-scrollbar-track { background: var(--win-face); border: 1px solid var(--win-dark); }
+::-webkit-scrollbar-thumb {
+  background: var(--win-face);
+  border: 2px outset var(--win-face);
+}
+::-webkit-scrollbar-button {
+  background: var(--win-face);
+  border: 1px outset var(--win-face);
+  height: 16px;
+}
+
+/* --- ANIMATIONS ------------------------------------------ */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  75% { transform: translateX(4px); }
+}
+.shake { animation: shake 0.3s ease 3; }
+
+@keyframes flash-red {
+  0%, 100% { background: white; }
+  50% { background: #ffcccc; }
+}
+.flash-red { animation: flash-red 0.4s ease 2; }
+
+@keyframes printer-smash {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.3) rotate(5deg); }
+  100% { transform: scale(0) rotate(45deg); opacity: 0; }
+}
+
+/* --- RESPONSIVE ------------------------------------------ */
+@media (max-width: 800px) {
+  .sidebar, .sidebar-right { display: none; }
+  .main-layout { flex-direction: column; }
+}
